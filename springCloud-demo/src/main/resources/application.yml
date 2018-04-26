@@ -1,0 +1,15 @@
+spring: 
+  profiles: 
+    active: dev
+    
+  application:
+    name: springCloud-demo
+   
+  cloud:
+    bootstrap:
+      enabled: false
+      
+    config:
+      uri: http://localhost:8888
+      
+      
