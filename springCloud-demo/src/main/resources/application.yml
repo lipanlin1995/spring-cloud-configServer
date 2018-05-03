@@ -1,15 +1,45 @@
-spring: 
-  profiles: 
+#日志配置
+logging:
+  file: D:\springCloud-server.log
+  level: 
+    root: WARN
+    com.bailian: INFO
+    org.springframework: INFO
+    
+#端口设置
+server:
+  port: 8888
+  
+#应用名称、环境配置
+spring:
+  application:
+    name: config-server
+  profiles:
     active: dev
     
-  application:
-    name: springCloud-demo
-   
+#远程仓库github配置    
   cloud:
-    bootstrap:
-      enabled: false
-      
     config:
-      uri: http://localhost:8888
+      server:
+        git:
+          uri: https://github.com/lipanlin1995/config-repository
+          searchPaths: /**
+      lable: master
       
-      
+#eureka相关配置
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: localhost
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  healthcheck:
+    enabled: true
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+    
