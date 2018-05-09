@@ -13,7 +13,7 @@ server:
 #应用名称、环境配置
 spring:
   application:
-    name: config-server
+    name: configServer
   profiles:
     active: dev
     
@@ -26,13 +26,24 @@ spring:
           searchPaths: /**
       lable: master
       
+#kafka消息中间件配置(生产者)
+  kafka:
+    producer:
+      servers: 10.202.161.190:9092,10.202.161.191:9092,10.202.161.192:9092
+      retries: 1
+      batch: 
+        size: 4096
+      linger: 1
+      buffer:
+        memory: 40960
+     
 #eureka相关配置
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
   instance:
     hostname: localhost
     statusPageUrlPath: /info
