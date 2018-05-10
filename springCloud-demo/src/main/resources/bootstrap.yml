@@ -24,7 +24,7 @@ spring:
         git:
           uri: https://github.com/lipanlin1995/config-repository
           searchPaths: /**
-      lable: master
+      label: master
       
 #kafka消息中间件配置(生产者)
   kafka:
